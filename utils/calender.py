@@ -6,7 +6,7 @@ ymd=datetime.date.today()
 
 today=SolarDay.from_ymd(ymd.year,ymd.month,ymd.day).get_sixty_cycle_day()
 
-def 排六神(day):
+def 排六神(day=today):
     初神 = {
     '甲': 0, '乙': 0,
     '丙': 1, '丁': 1,
