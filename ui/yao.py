@@ -1,12 +1,9 @@
-from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.graphics import Color, Rectangle
 from kivy.properties import BooleanProperty
 from kivy.clock import Clock
 
-class BarWidget(Widget):
-    # 像 Label 一样用属性（这是唯一关键）
-    
+class YaoWidget(Widget):
    status = BooleanProperty(True)
 
    def __init__(self, **kwargs):
@@ -42,9 +39,3 @@ class BarWidget(Widget):
          return True
       return super().on_touch_down(touch)
 
-class TestApp(App):
-   def build(self):
-      return BarWidget(size=(400, 100))
-
-if __name__ == '__main__':
-    TestApp().run()

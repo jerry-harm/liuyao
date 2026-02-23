@@ -1,29 +1,39 @@
-#:import BarWidget ui.yao.BarWidget
+#:import YaoWidget ui.yao.YaoWidget
 BoxLayout:
    orientation: 'vertical'
    Label:
       text:'时间信息'
+   BoxLayout:
+      orientation:'horizontal'
+      TextInput:
+         id: 'year'
+         text: '1999'
+         hint_text: '年'
+      TextInput:
+         id: 'id'
+         text: 'Placeholder text'
+         hint_text: 'Hint text'
    BoxLayout:
       orientation: 'horizontal'
       BoxLayout:
          orientation:'vertical'
          Label:
             text:'本卦'
-         BarWidget:
-         BarWidget:
-         BarWidget:
-         BarWidget:
-         BarWidget:
-         BarWidget:
+         YaoWidget:
+         YaoWidget:
+         YaoWidget:
+         YaoWidget:
+         YaoWidget:
+         YaoWidget:
       BoxLayout:
          orientation:'vertical'
          Label:
             text: '变卦'
-         BarWidget:
-         BarWidget:
-         BarWidget:
-         BarWidget:
-         BarWidget:
-         BarWidget:
+         YaoWidget:
+         YaoWidget:
+         YaoWidget:
+         YaoWidget:
+         YaoWidget:
+         YaoWidget:
    Label:
       text:'可能放周易原文'
