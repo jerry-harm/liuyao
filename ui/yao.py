@@ -1,9 +1,11 @@
+from kivy.event import EventDispatcher
+from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.widget import Widget
 from kivy.graphics import Color, Rectangle
 from kivy.properties import BooleanProperty
 from kivy.clock import Clock
 
-class YaoWidget(Widget):
+class YaoButton(ButtonBehavior,Widget):
    status = BooleanProperty(True)
 
    def __init__(self, **kwargs):
@@ -17,14 +19,16 @@ class YaoWidget(Widget):
       self.canvas.clear()
       if self.width <= 0:
          return
+      if self.height <= 0:
+         return
 
       with self.canvas:
          Color(1, 1, 1, 1)
 
          w = self.width * 0.8
-         h = 20
-         x = self.x + (self.width - w) / 2
-         y = self.y + (self.height - h) / 2
+         h = self.height * 0.5
+         x = self.pos[0] + (self.width - w) / 2
+         y = self.pos[1] + (self.height - h) / 2
 
          if self.status:
             Rectangle(pos=(x, y), size=(w, h))
@@ -33,9 +37,6 @@ class YaoWidget(Widget):
             Rectangle(pos=(x, y), size=(part, h))
             Rectangle(pos=(x + w - part, y), size=(part, h))
 
-   def on_touch_down(self, touch):
-      if self.collide_point(*touch.pos):
-         self.status = not self.status
-         return True
-      return super().on_touch_down(touch)
+   def on_press(self):
+      self.status = not self.status
 

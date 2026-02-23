@@ -1,39 +1,24 @@
-#:import YaoWidget ui.yao.YaoWidget
+#:import SixYaoWidget ui.sixyao.SixYaoWidget
 BoxLayout:
    orientation: 'vertical'
    Label:
       text:'时间信息'
-   BoxLayout:
-      orientation:'horizontal'
-      TextInput:
-         id: 'year'
-         text: '1999'
-         hint_text: '年'
-      TextInput:
-         id: 'id'
-         text: 'Placeholder text'
-         hint_text: 'Hint text'
+      size_hint: 1, 0.2
+   # BoxLayout:
+   #    orientation:'horizontal'
+   #    TextInput:
+   #       id: 'year'
+   #       text: '1999'
+   #       hint_text: '年'
+   #    TextInput:
+   #       id: 'id'
+   #       text: 'Placeholder text'
+   #       hint_text: 'Hint text'
+
    BoxLayout:
       orientation: 'horizontal'
-      BoxLayout:
-         orientation:'vertical'
-         Label:
-            text:'本卦'
-         YaoWidget:
-         YaoWidget:
-         YaoWidget:
-         YaoWidget:
-         YaoWidget:
-         YaoWidget:
-      BoxLayout:
-         orientation:'vertical'
-         Label:
-            text: '变卦'
-         YaoWidget:
-         YaoWidget:
-         YaoWidget:
-         YaoWidget:
-         YaoWidget:
-         YaoWidget:
+      SixYaoWidget:
+      SixYaoWidget:
+
    Label:
       text:'可能放周易原文'

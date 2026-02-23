@@ -10,7 +10,7 @@ from utils.calender import 排六神
 class LiuYaoApp(App):
     def build(self):
         resource_add_path('./fonts')
-        LabelBase.register(DEFAULT_FONT, 'NotoSerifSC-VF.ttf')
+        LabelBase.register(DEFAULT_FONT, 'NotoSansMonoCJKsc-VF.ttf')
 if __name__ == '__main__':
     LiuYaoApp().run()
 

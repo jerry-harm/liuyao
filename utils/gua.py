@@ -84,17 +84,11 @@ class 六爻:
         if len(卦象) != 6:
             raise TypeError("卦象长度错误")
         self.卦象 = 卦象
-        self.下卦 = 卦象到卦名(卦象[0:3])
-        self.上卦 = 卦象到卦名(卦象[3:6])
-        self.天干 = []
-        self.地支 = []
-        self.六十甲子=[]
-        self.五行 = []
-        self.六亲 = []
-        self.卦名 = 六十四卦[self.下卦.get_index(),self.上卦.get_index()]
-        self.排盘()
 
     def 排盘(self):
+        self.下卦 = 卦象到卦名(self.卦象[0:3])
+        self.上卦 = 卦象到卦名(self.卦象[3:6])
+        self.卦名 = 六十四卦[self.下卦.get_index(),self.上卦.get_index()]
         # 世
         地 = self.卦象[0] == self.卦象[3]
         人 = self.卦象[1] == self.卦象[4]
@@ -125,7 +119,7 @@ class 六爻:
         self.地支 = 下["内支"] + 上["外支"]
 
         # 组合成 甲子
-        self.六十甲子 = [
+        self.甲子 = [
             g + z for g, z in zip(self.天干, self.地支)
         ]
 
