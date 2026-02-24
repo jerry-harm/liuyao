@@ -20,7 +20,7 @@ KV="""
         text: root.shiyin
         size_hint: 0.3, 1
         font_size: self.height * 0.7
-        
+
     YaoButton:
         on_release: root.yao_change(root.index, self, *args[1:])
     
