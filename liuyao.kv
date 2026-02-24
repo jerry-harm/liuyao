@@ -14,27 +14,17 @@
 #You should have received a copy of the GNU General Public License
 #along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #:import SixYaoWidget ui.sixyao.SixYaoWidget
+#:import TimeWidget ui.time.TimeWidget
+#:import SixGodWidget ui.time.SixGodWidget
 BoxLayout:
    orientation: 'vertical'
-   Label:
-      text:'时间信息'
-      size_hint: 1, 0.2
-   # BoxLayout:
-   #    orientation:'horizontal'
-   #    TextInput:
-   #       id: 'year'
-   #       text: '1999'
-   #       hint_text: '年'
-   #    TextInput:
-   #       id: 'id'
-   #       text: 'Placeholder text'
-   #       hint_text: 'Hint text'
-
+   TimeWidget:
+      on_sixgod_updated: root.ids.sixgod.update(sixgod=args[1])
+      size_hint_y: 0.3
    BoxLayout:
       orientation: 'horizontal'
-      # 六神
-      BoxLayout:
-         orientation: 'vertical'
+      SixGodWidget:
+         id: sixgod
          size_hint_x: 0.1
       BoxLayout:
          orientation: 'horizontal'

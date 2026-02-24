@@ -1,5 +1,6 @@
 {
     "python.analysis.autoImportCompletions": true,
-    "editor.snippetSuggestions":"top",
-    "editor.tabCompletion": "on"
+    "editor.snippetSuggestions":"bottom",
+    "editor.tabCompletion": "on",
+    "materialkv.pythonFile": "main.py"
 }

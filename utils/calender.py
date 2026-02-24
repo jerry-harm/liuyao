@@ -15,15 +15,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 '''
-from tyme4py.solar import SolarDay
-from tyme4py.sixtycycle import SixtyCycle
-import datetime
+from tyme4py.sixtycycle import SixtyCycleDay
 
-ymd=datetime.date.today()
-
-today=SolarDay.from_ymd(ymd.year,ymd.month,ymd.day).get_sixty_cycle_day()
-
-def 排六神(day=today):
+def 排六神(day:  SixtyCycleDay):
     初神 = {
     '甲': 0, '乙': 0,
     '丙': 1, '丁': 1,

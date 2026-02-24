@@ -15,19 +15,22 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 '''
+from kivy.config import Config
+from kivy.resources import resource_add_path
+
+resource_add_path('./fonts')
+Config.read(".config.ini")
+Config.set("kivy","default_font",['NotoSans','./fonts/NotoSansMonoCJKsc-VF.ttf','./fonts/NotoSansMonoCJKsc-VF.ttf','./fonts/NotoSansMonoCJKsc-VF.ttf','./fonts/NotoSansMonoCJKsc-VF.ttf'])
+Config.write()
+
 from kivy.app import App
 
-from kivy.resources import resource_add_path
 from kivy.core.text import LabelBase, DEFAULT_FONT
-from kivy.metrics import sp
-
-from utils.gua import 六爻
-from utils.calender import 排六神
 
 class LiuYaoApp(App):
     def build(self):
-        resource_add_path('./fonts')
-        LabelBase.register(DEFAULT_FONT, 'NotoSansMonoCJKsc-VF.ttf')
+        pass
+        
 if __name__ == '__main__':
     LiuYaoApp().run()
 
