@@ -23,6 +23,10 @@ Config.read(".config.ini")
 Config.set("kivy","default_font",['NotoSans','./fonts/NotoSansMonoCJKsc-VF.ttf','./fonts/NotoSansMonoCJKsc-VF.ttf','./fonts/NotoSansMonoCJKsc-VF.ttf','./fonts/NotoSansMonoCJKsc-VF.ttf'])
 Config.write()
 
+from kivy.loader import Loader
+
+Loader.loading_image = "icon.png"
+
 from kivy.app import App
 
 from kivy.core.text import LabelBase, DEFAULT_FONT

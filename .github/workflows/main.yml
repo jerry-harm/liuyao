@@ -1,28 +1,34 @@
-name: Build
-on: [push, pull_request]
+name: Build Android APK (Daily)
+
+# 触发规则：所有分支的push、所有PR，手动触发
+on:
+  push:
+    branches: ['*']  # 所有分支（可改为main/develop缩小范围）
+    tags-ignore: ['*']  # 关键：忽略Tag推送（避免和发布流程重复）
+  pull_request:
+    branches: ['*']
+  workflow_dispatch:
 
 env:
-  APP_ANDROID_ARCH: armeabi-v8a , armeabi-v7a
+  APP_ANDROID_ARCH: armeabi-v8a
 
 jobs:
-  # Build job. Builds app for Android with Buildozer
-  build-android:
-    name: Build for Android
+  build-apk:
+    name: Build APK
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build with Buildozer
+      - name: Build APK with Buildozer
         uses: n8marti/buildozer-action@fix-user-doesnt-exist
         id: buildozer
         with:
-          command: buildozer android release
+          command: buildozer android debug
           workdir: .
           buildozer_version: stable
 
-      - name: Upload artifacts
+      - name: Upload APK to Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: package
