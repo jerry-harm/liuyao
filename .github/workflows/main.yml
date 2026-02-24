@@ -1,0 +1,29 @@
+name: Build
+on: [push, pull_request]
+
+env:
+  APP_ANDROID_ARCH: armeabi-v8a , armeabi-v7a
+
+jobs:
+  # Build job. Builds app for Android with Buildozer
+  build-android:
+    name: Build for Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build with Buildozer
+        uses: n8marti/buildozer-action@fix-user-doesnt-exist
+        id: buildozer
+        with:
+          command: buildozer android release
+          workdir: .
+          buildozer_version: stable
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: package
+          path: ${{ steps.buildozer.outputs.filename }}
