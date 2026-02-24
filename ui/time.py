@@ -29,7 +29,10 @@ KV="""
     BoxLayout:
         orientation: 'horizontal'
         TextInput:
-            hint_text: 1999/02/01
+            id: input_time
+            hint_text: "1999/02/01/12/30 (留空视为现在)"
+        Button:
+            text: "确定"
 """
 
 class TimeWidget(BoxLayout):

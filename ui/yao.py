@@ -15,18 +15,21 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 '''
+from typing import Callable
+
 from kivy.event import EventDispatcher
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.widget import Widget
 from kivy.graphics import Color, Rectangle
-from kivy.properties import BooleanProperty
+from kivy.properties import BooleanProperty,ObjectProperty
 from kivy.clock import Clock
 
-class YaoButton(ButtonBehavior,Widget):
+class YaoButton(ButtonBehavior,Widget,EventDispatcher):
    status = BooleanProperty(True)
 
    def __init__(self, **kwargs):
-      super().__init__(**kwargs)
+      self.register_event_type('on_change')
+      super(YaoButton,self).__init__(**kwargs)
       # 一改状态就重画
       self.bind(status=self.update, size=self.update, pos=self.update)
       # 延迟画一次，防止初始化报错
@@ -56,4 +59,8 @@ class YaoButton(ButtonBehavior,Widget):
 
    def on_press(self):
       self.status = not self.status
+      self.dispatch('on_change')
+   
+   def on_change(self):
+      pass
 

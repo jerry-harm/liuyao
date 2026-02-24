@@ -29,22 +29,22 @@ from utils import 六爻
 KV="""
 <YaoWidget>
     orientation: 'horizontal'
-    shiyin: "text"
-    jiazi:"text"
     index: -1
     Label:
         id: shiyin
-        text: root.shiyin
-        size_hint: 0.3, 1
-        font_size: self.height * 0.7
+        text: ""
+        font_size: min(self.width  ,self.height )
+        size_hint: 0.2, 1
 
     YaoButton:
-        on_release: root.yao_change(root.index, self, *args[1:])
-    
+        on_change: root.yao_change(root.index, self, *args)
+        
+
     Label:
         id: jiazi
-        text: root.jiazi
-        font_size: self.height * 0.7
+        text: ""
+        font_size: min(self.width * 0.2 ,self.height * 0.6)
+        size_hint: 0.9, 1
 
 <SixYaoWidget>
     orientation:'vertical'
@@ -77,23 +77,22 @@ Builder.load_string(KV)
 
 class YaoWidget(BoxLayout):
     yao_change = ObjectProperty(None)
-    shiyin = StringProperty("")
-    jiazi = StringProperty("")
     index = NumericProperty(-1)
 
 class SixYaoWidget(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.gua = 六爻([True,True,True,True,True,True])
-        self.gua.排盘()
         Clock.schedule_once(self.update)
 
     def on_change(self,index,instanse:YaoButton,*args):
         self.gua.卦象[index]=instanse.status
-        self.gua.排盘()
-        self.update()
+        self.update(self)
+        
+        
     
     def update(self,*args):
+        self.gua.排盘()
         self.ids["name"].text = self.gua.卦名
         for child in self.children:
             if isinstance(child,YaoWidget):
