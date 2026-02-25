@@ -97,7 +97,7 @@ class Bagua(tyme4py.LoopTyme):
         return Element.from_name(["金", "金", "火", "木", "木", "水", "土", "土"][self.get_index()])
 
 class 六爻:
-    def __init__(self,卦象:List[bool] | List[int]) -> None:
+    def __init__(self,卦象:List[bool]) -> None:
         if len(卦象) != 6:
             raise TypeError("卦象长度错误")
         self.卦象 = 卦象

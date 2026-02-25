@@ -118,3 +118,4 @@ class SixGodWidget(BoxLayout):
     def update(self,sixgod):
         for i in range(6):
             self.ids[f"{i}"].text=sixgod[i]
+            self.sixgod=sixgod

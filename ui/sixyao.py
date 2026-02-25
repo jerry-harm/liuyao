@@ -16,11 +16,12 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 '''
 from kivy.clock import Clock
+from kivy.event import EventDispatcher
 from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang.builder import Builder
 
-from kivy.properties import ObjectProperty, StringProperty, NumericProperty
+from kivy.properties import ObjectProperty,  NumericProperty
 
 from .yao import YaoButton
 
@@ -55,22 +56,22 @@ KV="""
         size_hint: 1, 0.4
     YaoWidget:
         index: 5
-        yao_change:  root.on_change
+        yao_change:  root.change
     YaoWidget:
         index: 4
-        yao_change:  root.on_change
+        yao_change:  root.change
     YaoWidget:
         index: 3
-        yao_change:  root.on_change
+        yao_change:  root.change
     YaoWidget:
         index: 2
-        yao_change:  root.on_change
+        yao_change:  root.change
     YaoWidget:
         index: 1
-        yao_change:  root.on_change
+        yao_change:  root.change
     YaoWidget:
         index: 0
-        yao_change:  root.on_change
+        yao_change:  root.change
 """
 
 Builder.load_string(KV)
@@ -79,21 +80,24 @@ class YaoWidget(BoxLayout):
     yao_change = ObjectProperty(None)
     index = NumericProperty(-1)
 
-class SixYaoWidget(BoxLayout):
+class SixYaoWidget(BoxLayout,EventDispatcher):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.register_event_type('on_change')
         self.gua = 六爻([True,True,True,True,True,True])
         Clock.schedule_once(self.update)
 
-    def on_change(self,index,instanse:YaoButton,*args):
+    def change(self,index,instanse:YaoButton,*args):
         self.gua.卦象[index]=instanse.status
-        self.update(self)
-        
-        
+        self.update()
+        self.dispatch('on_change')
+
+    def on_change(self,*args):
+        pass
     
     def update(self,*args):
         self.gua.排盘()
-        self.ids["name"].text =self.gua.宫五行.get_name() + " " + self.gua.卦名
+        self.ids["name"].text =self.gua.宫.get_name() + " " + self.gua.卦名
         for child in self.children:
             if isinstance(child,YaoWidget):
                 i = child.index

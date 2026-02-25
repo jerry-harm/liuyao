@@ -16,11 +16,20 @@
 #:import SixYaoWidget ui.sixyao.SixYaoWidget
 #:import TimeWidget ui.time.TimeWidget
 #:import SixGodWidget ui.time.SixGodWidget
-BoxLayout:
+#:import ChangeWidget ui.change.ChangeWidget
+#:import Clipboard kivy.core.clipboard.Clipboard
+root:
    orientation: 'vertical'
-   TimeWidget:
-      on_sixgod_updated: root.ids.sixgod.update(sixgod=args[1])
+   BoxLayout:
+      orientation: 'horizontal'
       size_hint_y: 0.3
+      TimeWidget:
+         id:time
+         on_sixgod_updated: sixgod.update(sixgod=args[1])
+      Button:
+         text: "导出到剪切板"
+         size_hint: 0.1, 1
+         on_press: Clipboard.copy(root.format_output(time.ids["time"].text,time.ids["empty"].text,original.gua,changed.gua,sixgod.sixgod,change.change))
    BoxLayout:
       orientation: 'horizontal'
       SixGodWidget:
@@ -29,4 +38,11 @@ BoxLayout:
       BoxLayout:
          orientation: 'horizontal'
          SixYaoWidget:
+            id: original
+            on_change: change.update(0,self.gua.卦象)
+         ChangeWidget:
+            id: change
+            size_hint_x:0.1
          SixYaoWidget:
+            id: changed
+            on_change: change.update(1,self.gua.卦象)
