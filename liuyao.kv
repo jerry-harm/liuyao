@@ -27,7 +27,7 @@ root:
          id:time
          on_sixgod_updated: sixgod.update(sixgod=args[1])
       Button:
-         text: "导出到剪切板"
+         text: "导出到\n剪切板"
          size_hint: 0.1, 1
          on_press: Clipboard.copy(root.format_output(time.ids["time"].text,time.ids["empty"].text,original.gua,changed.gua,sixgod.sixgod,change.change))
    BoxLayout:
