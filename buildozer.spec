@@ -1,7 +1,7 @@
 [app]
 
 # (str) Title of your application
-title = LiuYao
+title = 六爻
 
 # (str) Package name
 package.name = LiuYao

@@ -93,7 +93,7 @@ class SixYaoWidget(BoxLayout):
     
     def update(self,*args):
         self.gua.排盘()
-        self.ids["name"].text = self.gua.卦名
+        self.ids["name"].text =self.gua.宫五行.get_name() + " " + self.gua.卦名
         for child in self.children:
             if isinstance(child,YaoWidget):
                 i = child.index
