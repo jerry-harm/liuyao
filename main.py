@@ -50,9 +50,9 @@ class root(BoxLayout):
                 c_shi="应"
             gua+=\
 f"{sixgod[i]}\
-{o_shi}{'___' if original.卦象[i] else '_ _'}{original.六亲[i]}{original.甲子[i]}{original.五行[i]}\
+{o_shi}{'⚊' if original.卦象[i] else '⚋'}{original.六亲[i]}{original.甲子[i]}{original.五行[i]}\
 {' ' if not change[i] else change[i]}\
-{c_shi}{'___' if changed.卦象[i] else '_ _'}{changed.六亲[i]}{changed.甲子[i]}{changed.五行[i]}\n"
+{c_shi}{'⚊' if changed.卦象[i] else '⚋'}{changed.六亲[i]}{changed.甲子[i]}{changed.五行[i]}\n"
         return f"{time}\n{empty}\n"+gua
 class LiuYaoApp(App):
     def build(self):
