@@ -68,6 +68,8 @@ Builder.load_string(KV)
 class RootWidget(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.popup=ZhouYiPopup()
+
     def format_output(self,time,empty,original:六爻,changed:六爻,sixgod:List[str],change:List[str],*args) -> str:
         gua=f"\n\u3000\u3000\u3000{original.卦名}" + "\u3000" * (8-len(original.卦名)) +f"{changed.卦名}\n"
         for i in range(6):
@@ -95,7 +97,6 @@ o_shi+o_yao+original.六亲[i]+original.甲子[i]+original.五行[i]+\
 c_shi+c_yao+changed.六亲[i]+changed.甲子[i]+changed.五行[i]+"\n"
         return f"{time}\n{empty}\n"+gua
     def popup_zhouyi(self,text1,text2,**kwargs):
-        popup=ZhouYiPopup()
-        popup.update(text1+text2)
-        popup.open()
+        self.popup.update(text1+text2)
+        self.popup.open()
 
