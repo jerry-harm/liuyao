@@ -36,10 +36,10 @@ class Root(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
     def format_output(self,time,empty,original:六爻,changed:六爻,sixgod:List[str],change:List[str],*args) -> str:
-        gua=f"\n   {original.卦名}      {changed.卦名}\n"
+        gua=f"\n\u3000\u3000\u3000{original.卦名}" + "\u3000" * (8-len(original.卦名)) +f"{changed.卦名}\n"
         for i in range(6):
-            o_shi=" "
-            c_shi=" "
+            o_shi="\u3000"
+            c_shi="\u3000"
             if original.世==i:
                 o_shi="世"
             if original.应==i:
@@ -51,7 +51,7 @@ class Root(BoxLayout):
             gua+=\
 f"{sixgod[i]}\
 {o_shi}{'⚊' if original.卦象[i] else '⚋'}{original.六亲[i]}{original.甲子[i]}{original.五行[i]}\
-{' ' if not change[i] else change[i]}\
+{'\u3000' if not change[i] else change[i]}\
 {c_shi}{'⚊' if changed.卦象[i] else '⚋'}{changed.六亲[i]}{changed.甲子[i]}{changed.五行[i]}\n"
         return f"{time}\n{empty}\n"+gua
     def popup_zhouyi(self,text,**kwargs):
