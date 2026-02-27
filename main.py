@@ -32,6 +32,9 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from ui.zhouyi import ZhouYiPopup
 
+YIN="\u268b"
+YANG="\u268a"
+
 class Root(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -48,11 +51,18 @@ class Root(BoxLayout):
                 c_shi="世"
             if changed.应==i:
                 c_shi="应"
-            gua+=\
-f"{sixgod[i]}\
-{o_shi}{'⚊' if original.卦象[i] else '⚋'}{original.六亲[i]}{original.甲子[i]}{original.五行[i]}\
-{'\u3000' if not change[i] else change[i]}\
-{c_shi}{'⚊' if changed.卦象[i] else '⚋'}{changed.六亲[i]}{changed.甲子[i]}{changed.五行[i]}\n"
+            if original.卦象[i]:
+                o_yao=YANG
+            else:
+                o_yao=YIN
+            if changed.卦象[i]:
+                c_yao=YANG
+            else:
+                c_yao=YIN
+            gua+=sixgod[i]+\
+o_shi+o_yao+original.六亲[i]+original.甲子[i]+original.五行[i]+\
+('\u3000' if not change[i] else change[i])+\
+c_shi+c_yao+changed.六亲[i]+changed.甲子[i]+changed.五行[i]+"\n"
         return f"{time}\n{empty}\n"+gua
     def popup_zhouyi(self,text,**kwargs):
         popup=ZhouYiPopup(text=text)
