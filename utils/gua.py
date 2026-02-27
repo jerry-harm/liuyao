@@ -152,7 +152,7 @@ class 六爻:
                     else "妻财"
                     for x in self.五行]
         
-    def 卦辞(self, json_file="./utils/zhouyi.json") -> str:
+    def gua_ci(self, json_file="./utils/zhouyi.json") -> str:
         global _ZHOUYI_DICT
         gua_key=f"{self.下卦}下{self.上卦}上" 
         if _ZHOUYI_DICT == None:

@@ -27,10 +27,4 @@ KV="""
 Builder.load_string(KV)
 
 class ZhouYiPopup(Popup):
-    text =  StringProperty("none")
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        Clock.schedule_once(self.update)
-    
-    def update(self,*args):
-        pass
+    text = StringProperty("none")
