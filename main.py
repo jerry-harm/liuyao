@@ -29,6 +29,8 @@ Config.write()
 
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
+from kivy.factory import Factory
+from ui.zhouyi import ZhouYiPopup
 
 class root(BoxLayout):
     def __init__(self, **kwargs):
@@ -54,6 +56,7 @@ f"{sixgod[i]}\
         return f"{time}\n{empty}\n"+gua
 class LiuYaoApp(App):
     def build(self):
+        Factory.register("ZhouYiPopup",cls=ZhouYiPopup)
         pass
         
 if __name__ == '__main__':

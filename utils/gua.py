@@ -20,7 +20,8 @@ from __future__ import annotations
 from tyme4py.sixtycycle import Element,HeavenStem,EarthBranch
 import tyme4py
 from typing import List
-
+import json
+_ZHOUYI_DICT=None
 纳甲表 = {
     # 阳卦：顺排阳支（子、寅、辰、午、申、戌）；阴卦：逆排阴支（未、巳、卯、丑、亥、酉）
     "乾": {"内干": "甲", "外干": "壬", "内支": ["子", "寅", "辰"], "外支": ["午", "申", "戌"]},
@@ -150,6 +151,22 @@ class 六爻:
                     else "官鬼" if self.宫五行.get_restrained().get_name() == x
                     else "妻财"
                     for x in self.五行]
+        
+    def 卦辞(self, json_file="./utils/zhouyi.json") -> str:
+        global _ZHOUYI_DICT
+        gua_key=f"{self.下卦}下{self.上卦}上" 
+        if _ZHOUYI_DICT == None:
+            try:
+                with open(json_file, "r", encoding="utf-8") as f:
+                    zhouyi_dict = json.load(f)
+            except (FileNotFoundError, json.JSONDecodeError):
+                return None
+        if gua_key not in zhouyi_dict:
+            return None
+
+        full_text = zhouyi_dict[gua_key]
+        return full_text
+
 
 def 卦象到卦名(卦象:List[bool] | List[int]) -> Bagua:
     先天八卦序 =~(卦象[2] *0b1+卦象[1]*0b10+卦象[0]*0b100)
