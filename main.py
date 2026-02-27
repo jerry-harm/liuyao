@@ -30,12 +30,7 @@ Config.write()
 
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-from kivy.factory import Factory
 from ui.zhouyi import ZhouYiPopup
-
-Factory.register("ZhouYiPopup",cls=ZhouYiPopup)
-
-
 
 class Root(BoxLayout):
     def __init__(self, **kwargs):
@@ -59,6 +54,9 @@ f"{sixgod[i]}\
 {' ' if not change[i] else change[i]}\
 {c_shi}{'⚊' if changed.卦象[i] else '⚋'}{changed.六亲[i]}{changed.甲子[i]}{changed.五行[i]}\n"
         return f"{time}\n{empty}\n"+gua
+    def popup_zhouyi(self,text,**kwargs):
+        popup=ZhouYiPopup(text=text)
+        popup.open()
 
 Builder.load_file("liuyao.kv")
 

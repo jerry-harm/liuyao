@@ -18,7 +18,6 @@
 #:import SixGodWidget ui.time.SixGodWidget
 #:import ChangeWidget ui.change.ChangeWidget
 #:import Clipboard kivy.core.clipboard.Clipboard
-#:import Factory kivy.factory.Factory
 
 Root:
    orientation: 'vertical'
@@ -35,7 +34,7 @@ Root:
       Button:
          text: "易经"
          size_hint: 0.1,1
-         on_press: Factory.ZhouYiPopup(text= original.gua.gua_ci() + '\n' + changed.gua.gua_ci() ).open()
+         on_press: root.popup_zhouyi(text=original.gua.gua_ci() + '\n' + changed.gua.gua_ci() )
    BoxLayout:
       orientation: 'horizontal'
       SixGodWidget:
