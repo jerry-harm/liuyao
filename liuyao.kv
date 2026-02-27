@@ -34,7 +34,7 @@ Root:
       Button:
          text: "易经"
          size_hint: 0.1,1
-         on_press: root.popup_zhouyi(f"{original.gua.gua_ci()}\n{changed.gua.gua_ci()}")
+         on_press: root.popup_zhouyi(original.gua.gua_ci(),changed.gua.gua_ci())
    BoxLayout:
       orientation: 'horizontal'
       SixGodWidget:

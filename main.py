@@ -64,8 +64,8 @@ o_shi+o_yao+original.六亲[i]+original.甲子[i]+original.五行[i]+\
 ('\u3000' if not change[i] else change[i])+\
 c_shi+c_yao+changed.六亲[i]+changed.甲子[i]+changed.五行[i]+"\n"
         return f"{time}\n{empty}\n"+gua
-    def popup_zhouyi(self,text,**kwargs):
-        popup=ZhouYiPopup(text=text)
+    def popup_zhouyi(self,text1,text2,**kwargs):
+        popup=ZhouYiPopup(text=text1+"\n"+text2)
         popup.open()
 
 Builder.load_file("liuyao.kv")
