@@ -16,11 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 '''
 from kivy.config import Config
-from kivy.lang import Builder
 from kivy.resources import resource_add_path
-
-from utils.gua import 六爻
-from typing import List
 
 resource_add_path('./fonts')
 Config.read(".config.ini")
@@ -29,50 +25,9 @@ Config.write()
 
 
 from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
-from ui.zhouyi import ZhouYiPopup
-
-YIN="\u268b"
-YANG="\u268a"
-
-class Root(BoxLayout):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-    def format_output(self,time,empty,original:六爻,changed:六爻,sixgod:List[str],change:List[str],*args) -> str:
-        gua=f"\n\u3000\u3000\u3000{original.卦名}" + "\u3000" * (8-len(original.卦名)) +f"{changed.卦名}\n"
-        for i in range(6):
-            o_shi="\u3000"
-            c_shi="\u3000"
-            if original.世==i:
-                o_shi="世"
-            if original.应==i:
-                o_shi="应"
-            if changed.世==i:
-                c_shi="世"
-            if changed.应==i:
-                c_shi="应"
-            if original.卦象[i]:
-                o_yao=YANG
-            else:
-                o_yao=YIN
-            if changed.卦象[i]:
-                c_yao=YANG
-            else:
-                c_yao=YIN
-            gua+=sixgod[i]+\
-o_shi+o_yao+original.六亲[i]+original.甲子[i]+original.五行[i]+\
-('\u3000' if not change[i] else change[i])+\
-c_shi+c_yao+changed.六亲[i]+changed.甲子[i]+changed.五行[i]+"\n"
-        return f"{time}\n{empty}\n"+gua
-    def popup_zhouyi(self,text1,text2,**kwargs):
-        popup=ZhouYiPopup(text=text1+"\n"+text2)
-        popup.open()
-
-Builder.load_file("liuyao.kv")
 
 class LiuYaoApp(App):
-    def build(self):
-        pass
+    pass
         
 if __name__ == '__main__':
     LiuYaoApp().run()

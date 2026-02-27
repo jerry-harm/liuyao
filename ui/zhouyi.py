@@ -14,7 +14,8 @@ KV="""
             do_scroll_x: False
             do_scroll_y: True
             Label:
-                text: root.text
+                id: text
+                text: ""
                 size_hint_y: None
                 height: self.texture_size[1]
                 text_size: self.width, None
@@ -27,4 +28,5 @@ KV="""
 Builder.load_string(KV)
 
 class ZhouYiPopup(Popup):
-    text = StringProperty("none")
+    def update(self,text):
+        self.ids["text"].text=text
