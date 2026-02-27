@@ -5,6 +5,7 @@ description = "简单业余的六爻排盘工具"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "ijson>=3.5.0",
     "kivy>=2.3.1",
     "tyme4py>=1.4.4",
 ]

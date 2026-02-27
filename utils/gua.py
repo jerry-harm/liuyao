@@ -20,8 +20,8 @@ from __future__ import annotations
 from tyme4py.sixtycycle import Element,HeavenStem,EarthBranch
 import tyme4py
 from typing import List
-import json
-_ZHOUYI_DICT=None
+import ijson
+
 纳甲表 = {
     # 阳卦：顺排阳支（子、寅、辰、午、申、戌）；阴卦：逆排阴支（未、巳、卯、丑、亥、酉）
     "乾": {"内干": "甲", "外干": "壬", "内支": ["子", "寅", "辰"], "外支": ["午", "申", "戌"]},
@@ -153,19 +153,16 @@ class 六爻:
                     for x in self.五行]
         
     def gua_ci(self, json_file="./utils/zhouyi.json") -> str:
-        global _ZHOUYI_DICT
         gua_key=f"{self.下卦}下{self.上卦}上" 
-        if _ZHOUYI_DICT == None:
-            try:
-                with open(json_file, "r", encoding="utf-8") as f:
-                    zhouyi_dict = json.load(f)
-            except (FileNotFoundError, json.JSONDecodeError):
+        try:
+            with open(json_file, "rb") as f:
+                kv_parser = ijson.kvitems(f, '')
+                for key, value in kv_parser:
+                    if key == gua_key:
+                        return value
                 return None
-        if gua_key not in zhouyi_dict:
+        except (FileNotFoundError):
             return None
-
-        full_text = zhouyi_dict[gua_key]
-        return full_text
 
 
 def 卦象到卦名(卦象:List[bool] | List[int]) -> Bagua:
