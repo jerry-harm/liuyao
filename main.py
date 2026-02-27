@@ -16,6 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 '''
 from kivy.config import Config
+from kivy.lang import Builder
 from kivy.resources import resource_add_path
 
 from utils.gua import 六爻
@@ -34,7 +35,9 @@ from ui.zhouyi import ZhouYiPopup
 
 Factory.register("ZhouYiPopup",cls=ZhouYiPopup)
 
-class root(BoxLayout):
+
+
+class Root(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
     def format_output(self,time,empty,original:六爻,changed:六爻,sixgod:List[str],change:List[str],*args) -> str:
@@ -56,6 +59,9 @@ f"{sixgod[i]}\
 {' ' if not change[i] else change[i]}\
 {c_shi}{'⚊' if changed.卦象[i] else '⚋'}{changed.六亲[i]}{changed.甲子[i]}{changed.五行[i]}\n"
         return f"{time}\n{empty}\n"+gua
+
+Builder.load_file("liuyao.kv")
+
 class LiuYaoApp(App):
     def build(self):
         pass
