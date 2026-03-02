@@ -7,6 +7,7 @@ from kivy.properties import  StringProperty
 KV="""
 <ZhouYiPopup>:
     title: "易经"
+    size_hint:0.6,0.6
     BoxLayout:
         orientation: 'vertical'
         ScrollView:
