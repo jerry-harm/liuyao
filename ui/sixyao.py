@@ -31,21 +31,18 @@ KV="""
 <YaoWidget>
     orientation: 'horizontal'
     index: -1
-    Label:
-        id: shiyin
-        text: ""
-        font_size: min(self.width  ,self.height )
-        size_hint: 0.2, 1
-
     YaoButton:
         on_change: root.yao_change(root.index, self, *args)
-        
-
     Label:
         id: jiazi
         text: ""
         font_size: min(self.width * 0.2 ,self.height * 0.6)
         size_hint: 0.9, 1
+    Label:
+        id: shiyin
+        text: ""
+        font_size: min(self.width  ,self.height )
+        size_hint: 0.2, 1
 
 <SixYaoWidget>
     orientation:'vertical'

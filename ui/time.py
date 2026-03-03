@@ -101,11 +101,7 @@ class TimeWidget(BoxLayout,EventDispatcher):
         sixgod=排六神(sixty_cycle_hour.get_sixty_cycle_day())
         self.ids["time"].text = str(sixty_cycle_hour)
         
-        self.ids["empty"].text =   "{}{}空{}{}空{}{}空{}{}空".format(*sixty_cycle_hour.get_year().get_extra_earth_branches(),
-                                                                 *sixty_cycle_hour.get_month().get_extra_earth_branches(),
-                                                                 *sixty_cycle_hour.get_day().get_extra_earth_branches(),
-                                                                 *sixty_cycle_hour.get_sixty_cycle().get_extra_earth_branches()
-                                                                 )
+        self.ids["empty"].text =   "旬空:{}{}".format(*sixty_cycle_hour.get_day().get_extra_earth_branches())
 
         self.dispatch('on_sixgod_updated', sixgod)
     def on_sixgod_updated(self,*args):

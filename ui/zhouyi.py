@@ -1,13 +1,9 @@
-from kivy.clock import Clock
 from kivy.lang import Builder
-from kivy.uix.popup import Popup
-
-from kivy.properties import  StringProperty
+from kivy.uix.screenmanager import Screen
 
 KV="""
-<ZhouYiPopup>:
-    title: "易经"
-    size_hint:0.6,0.6
+<ZhouYiScreen>:
+    name: 'zhouyi'
     BoxLayout:
         orientation: 'vertical'
         ScrollView:
@@ -23,11 +19,11 @@ KV="""
         Button:
             size_hint:1,0.1
             text: "关闭"
-            on_press: root.dismiss()
+            on_press: root.manager.current = 'main'
 """
 
 Builder.load_string(KV)
 
-class ZhouYiPopup(Popup):
-    def update(self,text):
-        self.ids["text"].text=text
+class ZhouYiScreen(Screen):
+    def update(self,instance,text1,text2,*args):
+        self.ids['text'].text=text1+text2

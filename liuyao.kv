@@ -1,3 +1,9 @@
-#:import RootWidget ui.main.RootWidget
+#:import MainScreen ui.main.MainScreen
+#:import ZhouYiScreen ui.zhouyi.ZhouYiScreen
+#:import ScreenManager kivy.uix.screenmanager.ScreenManager
 
-RootWidget:
+ScreenManager:
+    MainScreen:
+        on_zhouyi: zhouyi.update(*args) 
+    ZhouYiScreen:
+        id: zhouyi
